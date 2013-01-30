@@ -6,7 +6,8 @@ requirejs.config({
   paths: {
     router: './app/router',
     server: './app/server',
-    sockets: './app/sockets'
+    sockets: './app/sockets',
+    player: './app/player'
   },
   shim: {
   },
@@ -16,7 +17,8 @@ requirejs.config({
 requirejs([
   'router',
   'server',
-  'sockets'
-], function (Router, Server, Sockets) {
+  'sockets',
+  'player'
+], function (Router, Server, Sockets, Player) {
   Server.listen(3000);
 });

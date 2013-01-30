@@ -1,5 +1,7 @@
 lib-cov
 node_modules
+*.swp
+*.mp3
 *.seed
 *.log
 *.csv
