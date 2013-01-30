@@ -1,18 +1,14 @@
-// Song module
 define([
-  // Application.
-  "app"
+  'backbone'
 ],
 
 // Map dependencies from above array.
-function(app) {
-
-  // Create a new module.
-  var Song = app.module();
-
+function(Backbone) {
   // Default Model.
   Song.Model = Backbone.Model.extend({
-  
+    initialize: function() {
+    },
+
   });
 
   // Default Collection.
