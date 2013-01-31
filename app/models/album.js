@@ -9,7 +9,11 @@ define([
       songs.fetch();
     },
 		defaults: {
-      songs: new Song.Collection()
+      name: 'Departed',
+      prefix: 'The',
+      year: '1998',
+      disk: '1',
+      songs: new Song.Collection(),
     }
   });
 

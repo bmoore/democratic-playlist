@@ -9,6 +9,8 @@ define([
     initialize: function() {
     },
 		defaults: {
+      name: "Cars",
+      prefix: "The",
       albums: new Album.Collection(),
       songs: new Song.Collection()
     }
