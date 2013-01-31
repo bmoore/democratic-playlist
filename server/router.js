@@ -9,7 +9,7 @@ define([
   });
 
   Router.use('/', Express.static(web_dir));
-  Router.use('/app/', Express.static('modules'));
+  Router.use('/modules/', Express.static('modules'));
 
   return Router;
 });
