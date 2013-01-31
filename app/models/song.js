@@ -1,9 +1,8 @@
 define([
   'backbone'
-],
+], function(Backbone) {
+  var Song = {};
 
-// Map dependencies from above array.
-function(Backbone) {
   // Default Model.
   Song.Model = Backbone.Model.extend({
     initialize: function() {
@@ -13,7 +12,8 @@ function(Backbone) {
 			title: 'The Nosebleed Section',
 			artist: 'Hilltop Hoods',
 			album: 'State of the Art',
-			time: 219000, // time in MS? how will this be stored in the DB?
+      path: '/path/to/song.mp3',
+			time: 219, // Time in seconds. Will be stored as seconds.
 			track: 16,
 			votes: 0,
 			votedFor: false,
@@ -28,10 +28,12 @@ function(Backbone) {
     model: Song.Model
   });
 
+  /* It layout manager doesn't exist yet
   // Default View.
   Song.Views.Layout = Backbone.Layout.extend({
     template: "song"
   });
+  */
 
   // Return the module for AMD compliance.
   return Song;

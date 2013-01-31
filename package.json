@@ -10,6 +10,7 @@
     "express": ">=3.1.0",
     "socket.io": ">=0.9.13",
     "lame": ">=1.0.1",
+    "musicmetadata": ">=0.2.0",
     "speaker": ">=0.0.7"
   },
   "description": "A node-based democratic play built for raspberry-pi.",

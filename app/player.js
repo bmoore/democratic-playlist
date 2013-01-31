@@ -1,7 +1,7 @@
 define([
   'fs',
   'lame',
-  'speaker'
+  'speaker',
 ], function(File, Lame, Speaker){
   var Player = {
     playing: false,
@@ -13,6 +13,9 @@ define([
     stream: {},
 
     play: function(song) {
+      if (song == undefined) {
+      }
+
       this.stop();
       this.decoder = new Lame.Decoder();
 

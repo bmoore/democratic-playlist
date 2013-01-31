@@ -24,7 +24,7 @@ CREATE TABLE song (
     album_id INTEGER UNSIGNED NOT NULL,
     artist_id INTEGER UNSIGNED NOT NULL,
     title VARCHAR(255) NOT NULL,
-    time TIME,
+    time SMALLINT UNSIGNED,
     track SMALLINT UNSIGNED,
     path VARCHAR(4096) NOT NULL,
     FOREIGN KEY (album_id) REFERENCES album (id),
