@@ -7,7 +7,8 @@ requirejs.config({
     router: './app/router',
     server: './app/server',
     sockets: './app/sockets',
-    player: './app/player'
+    player: './app/player',
+    playlist: './app/models/playlist'
   },
   shim: {
   },
@@ -18,7 +19,9 @@ requirejs([
   'router',
   'server',
   'sockets',
-  'player'
-], function (Router, Server, Sockets, Player) {
+  'player',
+  'playlist'
+], function (Router, Server, Sockets, Player, Playlist) {
   Server.listen(3000);
+  console.log(Playlist);
 });
