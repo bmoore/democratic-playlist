@@ -47,3 +47,13 @@ CREATE TABLE user (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE
 );
+
+DROP TABLE IF EXISTS vote;
+CREATE TABLE vote (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INTEGER UNSIGNED NOT NULL,
+    playlist_id INTEGER UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (playlist_id) REFERENCES playlist (id),
+    UNIQUE(user_id, playlist_id)
+);
