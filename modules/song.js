@@ -1,7 +1,6 @@
 define([
   'backbone',
-  'server/db'
-], function(Backbone, Db) {
+], function(Backbone) {
   var Song = {};
 
   // Default Model.
@@ -27,25 +26,8 @@ define([
   // Default Collection.
   Song.Collection = Backbone.Collection.extend({
     model: Song.Model,
-    sync: function(method, collection, options) {
-      if (method == 'read') {
-        var query = Db.query('SELECT * FROM song WHERE album_id = ?', options.album_id, function(err, results) {
-          console.log("ERROR: ", err);
-          console.log("Results: ", results);
-        });
-        console.log(query.sql);
-      }
-    }
   });
 
-  /* It layout manager doesn't exist yet
-  // Default View.
-  Song.Views.Layout = Backbone.Layout.extend({
-    template: "song"
-  });
-  */
-
-  // Return the module for AMD compliance.
   return Song;
 
 });
