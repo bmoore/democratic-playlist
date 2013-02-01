@@ -13,7 +13,14 @@ requirejs.config({
 requirejs([
   'server/router',
   'server/server',
-  'server/sockets'
-], function (Router, Server, Sockets) {
+  'server/sockets',
+  'modules/song',
+  'server/tools/player'
+], function (Router, Server, Sockets, Song, Player) {
   Server.listen(3000);
+
+  Songs = new Song.Collection();
+  console.log(Songs);
+  Songs.fetch({album_id: 1});
+
 });
