@@ -76,6 +76,9 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+a {
+  text-decoration: none; }
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -146,19 +149,19 @@ textarea {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.clearfix, #main, #main #playlist ol li {
+.clearfix, #main, #main > section, #main #playlist ol li, #main #library ol {
   *zoom: 1; }
-  .clearfix:before, #main:before, #main #playlist ol li:before, .clearfix:after, #main:after, #main #playlist ol li:after {
+  .clearfix:before, #main:before, #main > section:before, #main #playlist ol li:before, #main #library ol:before, .clearfix:after, #main:after, #main > section:after, #main #playlist ol li:after, #main #library ol:after {
     content: " ";
     /* 1 */
     display: table;
     /* 2 */ }
-  .clearfix:after, #main:after, #main #playlist ol li:after {
+  .clearfix:after, #main:after, #main > section:after, #main #playlist ol li:after, #main #library ol:after {
     clear: both; }
 
 html,
 body {
-  height: 100%; }
+  min-height: 100%; }
 
 #main {
   height: 100%; }
@@ -213,16 +216,40 @@ body {
         background: url(/images/sprite-vote.png) no-repeat top left; }
       #main #playlist ol li .voted {
         background-position: bottom left; }
+  #main #library ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    #main #library ol li {
+      float: left;
+      display: block;
+      margin: 1em 1%; }
+      #main #library ol li a {
+        padding: 8px;
+        text-decoration: none;
+        display: block;
+        width: 150px;
+        border-radius: 4px;
+        border: 2px solid transparent; }
+        #main #library ol li a:hover, #main #library ol li a:focus {
+          border-color: rgba(0, 0, 0, 0.5);
+          background: rgba(0, 0, 0, 0.1); }
+      #main #library ol li img,
+      #main #library ol li span {
+        display: block;
+        text-align: center; }
   @media screen and (min-width: 800px) {
     #main > section {
       float: left;
       height: 100%; }
     #main #playlist {
-      width: 70%;
+      width: 50%;
       border-right: 1px solid #111;
       margin-right: -1px; }
     #main #library {
-      width: 30%; } }
+      width: 50%;
+      margin-right: -1px;
+      border-left: 1px solid #111; } }
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
