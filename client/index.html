@@ -20,7 +20,7 @@
 		<section id="playlist">
 			<h1>Now Playing</h1>
 
-			<ol>
+			<ol class="tracks">
 				<!-- should this be a table? yuck -->
 				<li>
 					<div class="progress"></div>
@@ -59,31 +59,72 @@
 			-->
 
 			<!-- album list sorted by artist -->
+			<div class="album-list">
+				<ol>
+					<li><a href="#album/1">
+							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
+							<span class="album">Noir</span>
+							<span class="artist">Blue Sky Black Death</span>
+					</a></li>
+					<li><a href="#album/2">
+							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
+							<span class="album">Le Noise</span>
+							<span class="artist">Neil Young</span>
+					</a></li>
+					<li><a href="#album/3">
+							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
+							<span class="album">Reign of Terror</span>
+							<span class="artist">Sleigh Bells</span>
+					</a></li>
+					<li><a href="#album/4">
+							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
+							<span class="album">Rise Ye Sunken Ships</span>
+							<span class="artist">We Are Augustines</span>
+					</a></li>
+				</ol>
+			</div>
 
-			<ol>
-				<li><a href="#album/1">
-						<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-						<span class="album">Noir</span>
-						<span class="artist">Blue Sky Black Death</span>
-				</a></li>
-				<li><a href="#album/2">
-						<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-						<span class="album">Le Noise</span>
-						<span class="artist">Neil Young</span>
-				</a></li>
-				<li><a href="#album/3">
-						<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-						<span class="album">Reign of Terror</span>
-						<span class="artist">Sleigh Bells</span>
-				</a></li>
-				<li><a href="#album/4">
-						<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-						<span class="album">Rise Ye Sunken Ships</span>
-						<span class="artist">We Are Augustines</span>
-				</a></li>
+			<div class="album-detail">
+			
+				<div class="jacket">
+					<h2>Noir</h2>
+					<div class="artist">Blue Sky Black Death</div>
+					<div class="year">2011</div>
+					<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
+				</div>
+				<ol class="tracks">
+					<li>
+						<span class="track-number">1</span>
+						<span class="title">Our Hearts of Ruin</span>
+						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+						<span class="actions"><a href="#" class="voted">Upvoted</a></span>
+					</li>
+					<li>
+						<span class="track-number">2</span>
+						<span class="title">Sleeping Children Are Still Flying</span>
+						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+						<span class="actions"><a href="#" class="upvote">Upvote</a></span>
+					</li>
+					<li>
+						<span class="track-number">3</span>
+						<span class="title">And Stars, Ringed</span>
+						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+						<span class="actions"><a href="#" class="upvote">Upvote</a></span>
+					</li>
+					<li>
+						<span class="track-number">4</span>
+						<span class="title">To The Ends Of The Earth</span>
+						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+						<span class="actions"><a href="#" class="upvote">Upvote</a></span>
+					</li>
+
+
+				</ol>
+				
 			
 			
-			</ol>
+			
+			</div>
 		
 		
 		</section> <!-- /#library-->

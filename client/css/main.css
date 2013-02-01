@@ -85,15 +85,15 @@ a {
 /*
  * Image replacement
  */
-.ir, #main #playlist ol li .upvote,
-#main #playlist ol li .voted {
+.ir, #main ol.tracks li .upvote,
+#main ol.tracks li .voted {
   background-color: transparent;
   border: 0;
   overflow: hidden;
   /* IE 6/7 fallback */
   *text-indent: -9999px; }
-  .ir:before, #main #playlist ol li .upvote:before,
-  #main #playlist ol li .voted:before {
+  .ir:before, #main ol.tracks li .upvote:before,
+  #main ol.tracks li .voted:before {
     content: "";
     display: block;
     width: 0;
@@ -149,14 +149,14 @@ a {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.clearfix, #main, #main > section, #main #playlist ol li, #main #library ol {
+.clearfix, #main, #main > section, #main ol.tracks li, #main #library .album-list ol {
   *zoom: 1; }
-  .clearfix:before, #main:before, #main > section:before, #main #playlist ol li:before, #main #library ol:before, .clearfix:after, #main:after, #main > section:after, #main #playlist ol li:after, #main #library ol:after {
+  .clearfix:before, #main:before, #main > section:before, #main ol.tracks li:before, #main #library .album-list ol:before, .clearfix:after, #main:after, #main > section:after, #main ol.tracks li:after, #main #library .album-list ol:after {
     content: " ";
     /* 1 */
     display: table;
     /* 2 */ }
-  .clearfix:after, #main:after, #main > section:after, #main #playlist ol li:after, #main #library ol:after {
+  .clearfix:after, #main:after, #main > section:after, #main ol.tracks li:after, #main #library .album-list ol:after {
     clear: both; }
 
 html,
@@ -164,31 +164,19 @@ body {
   min-height: 100%; }
 
 #main {
-  height: 100%; }
+  height: 100%;
+  /* COMMON TRACK LIST STYLES */ }
   #main h1 {
     margin: 1em 1%; }
-  #main #playlist ol {
+  #main ol.tracks {
     list-style-type: none;
     margin: 0;
     padding: 0; }
-    #main #playlist ol li {
+    #main ol.tracks li {
       position: relative; }
-      #main #playlist ol li:nth-child(even) {
+      #main ol.tracks li:nth-child(even) {
         background-color: #eee; }
-      #main #playlist ol li:first-child {
-        font-weight: bold; }
-        #main #playlist ol li:first-child span {
-          padding: .75em 1%; }
-          #main #playlist ol li:first-child span.actions {
-            display: none; }
-      #main #playlist ol li .progress {
-        background-color: rgba(0, 200, 0, 0.15);
-        width: 35%;
-        position: absolute;
-        height: 100%;
-        left: 0;
-        top: 0; }
-      #main #playlist ol li span {
+      #main ol.tracks li span {
         position: relative;
         height: 1.5em;
         width: 10em;
@@ -198,44 +186,67 @@ body {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; }
-        #main #playlist ol li span.title {
+        #main ol.tracks li span.title {
           width: 30%; }
-        #main #playlist ol li span.artist {
+        #main ol.tracks li span.artist {
           width: 20%; }
-        #main #playlist ol li span.album {
+        #main ol.tracks li span.album {
           width: 25%; }
-        #main #playlist ol li span.vote-count {
+        #main ol.tracks li span.vote-count {
           width: 5%; }
-        #main #playlist ol li span.actions {
+        #main ol.tracks li span.actions {
           width: 10%; }
-      #main #playlist ol li .upvote,
-      #main #playlist ol li .voted {
+      #main ol.tracks li .upvote,
+      #main ol.tracks li .voted {
         display: block;
         width: 20px;
         height: 18px;
         background: url(/images/sprite-vote.png) no-repeat top left; }
-      #main #playlist ol li .voted {
+      #main ol.tracks li .voted {
         background-position: bottom left; }
-  #main #library ol {
+  #main #playlist ol.tracks li:first-child {
+    font-weight: bold; }
+    #main #playlist ol.tracks li:first-child span {
+      padding: .75em 1%; }
+      #main #playlist ol.tracks li:first-child span.actions {
+        display: none; }
+  #main #playlist ol.tracks li .progress {
+    background-color: rgba(0, 200, 0, 0.15);
+    width: 35%;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0; }
+  #main #playlist ol.tracks li span.title {
+    width: 30%; }
+  #main #playlist ol.tracks li span.artist {
+    width: 20%; }
+  #main #playlist ol.tracks li span.album {
+    width: 25%; }
+  #main #playlist ol.tracks li span.vote-count {
+    width: 5%; }
+  #main #playlist ol.tracks li span.actions {
+    width: 10%; }
+  #main #library .album-list ol {
     list-style-type: none;
     margin: 0;
     padding: 0; }
-    #main #library ol li {
+    #main #library .album-list ol li {
       float: left;
       display: block;
       margin: 1em 1%; }
-      #main #library ol li a {
+      #main #library .album-list ol li a {
         padding: 8px;
         text-decoration: none;
         display: block;
         width: 150px;
         border-radius: 4px;
         border: 2px solid transparent; }
-        #main #library ol li a:hover, #main #library ol li a:focus {
+        #main #library .album-list ol li a:hover, #main #library .album-list ol li a:focus {
           border-color: rgba(0, 0, 0, 0.5);
           background: rgba(0, 0, 0, 0.1); }
-      #main #library ol li img,
-      #main #library ol li span {
+      #main #library .album-list ol li img,
+      #main #library .album-list ol li span {
         display: block;
         text-align: center; }
   @media screen and (min-width: 800px) {
@@ -285,8 +296,8 @@ body {
   /*
    * Don't show links for images, or javascript/internal links
    */
-  .ir a:after, #main #playlist ol li .upvote a:after,
-  #main #playlist ol li .voted a:after,
+  .ir a:after, #main ol.tracks li .upvote a:after,
+  #main ol.tracks li .voted a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
     content: ""; }

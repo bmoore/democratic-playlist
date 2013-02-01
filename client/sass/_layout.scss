@@ -14,9 +14,10 @@ body{
 	> section{
 		@extend .clearfix;
 	}
-	
-	#playlist{
-		ol{
+
+
+	/* COMMON TRACK LIST STYLES */
+		ol.tracks{
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
@@ -28,25 +29,6 @@ body{
 					background-color: #eee;
 				}
 
-				&:first-child{
-					font-weight: bold;
-					span{
-						padding: .75em 1%;
-						&.actions{
-							display: none;
-						}
-					}
-				}
-
-				.progress{
-					background-color: rgba(0, 200, 0, .15);
-					width: 35%;
-					position: absolute;
-					height: 100%;
-					left: 0;
-					top: 0;
-				
-				}
 				
 				span{
 					position: relative;
@@ -90,41 +72,87 @@ body{
 
 			}
 		}
+
+	
+	#playlist{
+		ol.tracks{
+			li{
+				&:first-child{
+					font-weight: bold;
+					span{
+						padding: .75em 1%;
+						&.actions{
+							display: none;
+						}
+					}
+				}
+
+				.progress{
+					background-color: rgba(0, 200, 0, .15);
+					width: 35%;
+					position: absolute;
+					height: 100%;
+					left: 0;
+					top: 0;
+				
+				}
+				
+				span{
+					&.title{
+						width: 30%;
+					}
+					&.artist{
+						width: 20%;
+					}
+					&.album{
+						width: 25%;
+					}
+					&.vote-count{
+						width: 5%;
+					}
+					&.actions{
+						width: 10%;
+					}
+				}
+			}
+		}
 	}
 
 	#library{
-		ol{
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			@extend .clearfix;
+		.album-list{
+			ol{
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				@extend .clearfix;
 
-			li{
-				float: left;
-				display: block;
-				margin: 1em 1%;
-				a{
-					padding: 8px;
-					text-decoration: none;
+				li{
+					float: left;
 					display: block;
-					width: 150px;
-					border-radius: 4px;
-					border: 2px solid transparent;
-					&:hover,
-					&:focus{
-						border-color: rgba(0,0,0,.5);
-						background: rgba(0,0,0,.1);
+					margin: 1em 1%;
+					a{
+						padding: 8px;
+						text-decoration: none;
+						display: block;
+						width: 150px;
+						border-radius: 4px;
+						border: 2px solid transparent;
+						&:hover,
+						&:focus{
+							border-color: rgba(0,0,0,.5);
+							background: rgba(0,0,0,.1);
+						
+						}
+					}
 					
+					img,
+					span{
+						display: block;
+						text-align: center;
 					}
 				}
-				
-				img,
-				span{
-					display: block;
-					text-align: center;
-				}
-			}
 
+			}
 		}
 	}
 	
