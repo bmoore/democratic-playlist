@@ -1,4 +1,5 @@
 lib-cov
+music
 node_modules
 *.swp
 *.mp3

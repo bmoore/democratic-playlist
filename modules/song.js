@@ -1,6 +1,7 @@
 define([
-  'backbone'
-], function(Backbone) {
+  'backbone',
+  'server/db'
+], function(Backbone, Db) {
   var Song = {};
 
   // Default Model.
@@ -25,7 +26,16 @@ define([
 
   // Default Collection.
   Song.Collection = Backbone.Collection.extend({
-    model: Song.Model
+    model: Song.Model,
+    sync: function(method, collection, options) {
+      if (method == 'read') {
+        var query = Db.query('SELECT * FROM song WHERE album_id = ?', options.album_id, function(err, results) {
+          console.log("ERROR: ", err);
+          console.log("Results: ", results);
+        });
+        console.log(query.sql);
+      }
+    }
   });
 
   /* It layout manager doesn't exist yet
