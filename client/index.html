@@ -1,17 +1,62 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>lol</title>
+<title>Democratic Playlist</title>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://localhost');
+		socket.on('news', function (data) {
+			console.log(data);
+			socket.emit('my other event', { my: 'data' });
+		});
+	</script>
+	<script data-main="/main" src="/require-jquery.js"></script>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<h1>'yo'</h1>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io.connect('http://localhost');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
-<script data-main="/main" src="/require-jquery.js"></script>
+
+	<div id="main" role="main">
+		<section id="playlist">
+			<h1>Now Playing</h1>
+
+			<ol>
+				<!-- should this be a table? yuck -->
+				<li>
+					<div class="progress"></div>
+					<span class="title">The River, The Woods</span>
+					<span class="artist">Astronautalis</span>
+					<span class="album">This Is Our Science</span>
+					<span class="vote-count">12</span>
+					<span class="actions"><a href="#" class="upvote">Upvote</a></span>
+				</li>
+				<li>
+					<span class="title">Take A Walk</span>
+					<span class="artist">Passion Pit</span>
+					<span class="album">Gossamer</span>
+					<span class="vote-count">9</span>
+					<span class="actions"><a href="#" class="voted">Upvoted</a></span>
+				</li>
+				<li>
+					<span class="title">No One Loves Me &amp; Neither Do I</span>
+					<span class="artist">Them Crooked Vultures</span>
+					<span class="album">Them Crooked Vultures</span>
+					<span class="vote-count">1</span>
+					<span class="actions"><a href="#" class="upvote">Upvote</a></span>
+				</li>
+			</ol>
+
+		
+		</section> <!-- /#playlist -->
+		<section id="library">
+			<h1>Library</h1>
+		
+		
+		</section> <!-- /#library-->
+
+
+	</div> <!-- end main -->
+
+
 </body>
 </html>
