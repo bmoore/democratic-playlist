@@ -11,11 +11,18 @@ requirejs.config({
     }
 });
 
-require(["jquery", "backbone", "modules/playlist"], 
-function($, Backbone, Playlist) {
+require(["jquery", "backbone", "modules/playlist", "modules/song"], 
+function($, Backbone, Playlist, Song) {
     $(function() {
 				var pl = new Playlist.Model();
-				//console.log(_);
-				console.log(pl);
+				var song = new Song.Model();
+
+				// song view test
+				//var sv = new Song.View({model: song, el: $('#playlist').find('li').eq(1) });
+				//sv.render();
+
+				// playlist view test
+				var plv = new Playlist.View({model: pl, el: '#playlist' });
+				plv.render();
     });
 });

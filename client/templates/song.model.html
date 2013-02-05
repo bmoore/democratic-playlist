@@ -1,0 +1,13 @@
+<div class="progress"></div>
+<span class="title"><%= title %> </span>
+<span class="artist"><a href="#artist/<%= artistId %>"><%=artist%></a></span>
+<span class="album"><a href="#album/<%= albumId %>"><%=album%></a></span>
+<span class="vote-count"><%= votes %></span>
+<span class="actions">
+	<% if(!votedFor){ %>
+		<a class="upvote" href="#">Upvote</a>
+	<% }else{ %>
+		<a class="voted" href="#">Upvoted</a>
+	<% } %>
+</span>
+

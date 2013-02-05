@@ -79,6 +79,7 @@ body{
 			li{
 				&:first-child{
 					font-weight: bold;
+					.progress{display: block;}
 					span{
 						padding: .75em 1%;
 						&.actions{
@@ -88,6 +89,7 @@ body{
 				}
 
 				.progress{
+					display: none;
 					background-color: rgba(0, 200, 0, .15);
 					width: 35%;
 					position: absolute;

@@ -206,11 +206,14 @@ body {
         background-position: bottom left; }
   #main #playlist ol.tracks li:first-child {
     font-weight: bold; }
+    #main #playlist ol.tracks li:first-child .progress {
+      display: block; }
     #main #playlist ol.tracks li:first-child span {
       padding: .75em 1%; }
       #main #playlist ol.tracks li:first-child span.actions {
         display: none; }
   #main #playlist ol.tracks li .progress {
+    display: none;
     background-color: rgba(0, 200, 0, 0.15);
     width: 35%;
     position: absolute;

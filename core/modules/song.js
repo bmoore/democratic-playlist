@@ -6,12 +6,15 @@ define([
   // Default Model.
   Song.Model = Backbone.Model.extend({
     initialize: function() {
+			console.log('init core song model');
     },
 		defaults: {
 			// id is a special attr - set to song_id on model create
 			title: 'The Nosebleed Section',
 			artist: 'Hilltop Hoods',
+			artistId: 0,
 			album: 'State of the Art',
+			albumId: 0,
       path: '/path/to/song.mp3',
 			time: 219, // Time in seconds. Will be stored as seconds.
 			track: 16,
