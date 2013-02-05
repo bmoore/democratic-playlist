@@ -14,7 +14,8 @@ requirejs.config({
 require(["jquery", "backbone", "modules/playlist"], 
 function($, Backbone, Playlist) {
     $(function() {
-				console.log(_);
-				console.log(Playlist);
+				var pl = new Playlist.Model();
+				//console.log(_);
+				console.log(pl);
     });
 });

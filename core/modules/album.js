@@ -1,6 +1,6 @@
 define([
   'backbone',
-  'modules/song'
+  'core/modules/song'
 ], function(Backbone, Song) {
   var Album = {};
 
