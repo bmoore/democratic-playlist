@@ -25,13 +25,13 @@ define([
 	Playlist.View = Backbone.View.extend({
 		initialize: function(){
 			this.model.on('change', this.render, this);
+			this.model.get('songs').on('change', this.render, this);
 		},
 		events: {
 		},
 		render: function(){
 			this.$('.tracks').empty();
 			this.model.get('songs').each(function(song){
-				console.log('rendereach', song);
 				this.$('.tracks').append(new Song.View({model: song}).render().el );
 			}, this);
 			return this;

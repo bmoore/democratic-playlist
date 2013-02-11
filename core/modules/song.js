@@ -28,7 +28,19 @@ define([
 
   // Default Collection.
   Song.Collection = Backbone.Collection.extend({
+		initialize: function(){
+			this.on('change:votes', this.sort, this);
+		},
     model: Song.Model,
+		comparator: function(s, t){
+			// TODO should break ties with playlist ID
+			if(s.get('votes') > t.get('votes')){
+				return -1;
+			}else if(s.get('votes') < t.get('votes')){
+				return 1;
+			}
+			return 0;
+		}
   });
 
   return Song;
