@@ -11,5 +11,11 @@ define([
 
   Db.connect();
 
+  Db.modelException = function(message, model) {
+    this.name = "Db.modelException";
+    this.message = message;
+    this.model = model;
+  };
+
   return Db;
 });
