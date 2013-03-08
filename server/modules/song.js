@@ -1,8 +1,7 @@
 define([
   'core/modules/song',
-  'server/modules/artist',
   'lodash'
-], function(CoreSong, Artist, _) {
+], function(CoreSong, _) {
   var Song = {};
   _.extend(Song, CoreSong);
 

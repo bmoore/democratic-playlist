@@ -1,12 +1,11 @@
 define([
   'backbone',
-  'core/modules/song'
+  'modules/song'
 ], function(Backbone, Song) {
   var Album = {};
 
   Album.Model = Backbone.Model.extend({
     initialize: function() {
-      songs.fetch();
     },
 		defaults: {
       name: 'Departed',

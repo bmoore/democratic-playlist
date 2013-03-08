@@ -12,6 +12,28 @@ define([
 	Playlist.Model = CorePlaylist.Model.extend({
     initialize: function(args) {
 			CorePlaylist.Model.prototype.initialize.call(this, args);
+			this.get('songs').add([
+				{
+					title: 'The Nosebleed Section',
+					artist: 'Hilltop Hoods',
+					album: 'State of the Art'
+				},
+				{
+					title: 'The River, The Woods',
+					artist: 'Astronautalis',
+					album: 'This Is Our Science'
+				},
+				{
+					title: 'Take A Walk',
+					artist: 'Passion Pit',
+					album: 'Gossamer'
+				},
+				{
+					title: 'No One Loves Me & Neither Do I',
+					artist: 'Them Crooked Vultures',
+					album: 'Them Crooked Vultures'
+				}
+			]);
 			console.log('client playlist model init');
     },
 		defaults: _.extend({
