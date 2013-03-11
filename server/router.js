@@ -83,7 +83,22 @@ define([
     playlist.get('songs').fetch({
       where: "id IN (select song_id FROM playlist WHERE played IS NULL)",
       success: function(m, r, o) {
-        res.send(playlist.toJSON());
+        //Issue: async causes response to be sent early
+        playlist.get('songs').each(function(song) {
+          song.get('artist').fetch({
+            where: "id = ?",
+            params: [song.get('artist_id')],
+            success: function(m, r, o) {
+              song.get('album').fetch({
+                where: "id = ?",
+                params: [song.get('album_id')],
+                success: function(m, r, o) {
+                  res.send(playlist.toJSON());
+                }
+              });
+            }
+          });
+        });
       }
     });
   });
