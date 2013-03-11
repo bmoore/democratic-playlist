@@ -6,17 +6,21 @@ define([
   // Default Model.
   Song.Model = Backbone.Model.extend({
     initialize: function() {
+      var Artist = requirejs('modules/artist');
+      var Album = requirejs('modules/album');
+			this.set('artist', new Artist.Model());
+			this.set('album', new Album.Model());
     },
 		defaults: {
 			// id is a special attr - set to song_id on model create
 			title: 'The Nosebleed Section',
-			artist: 'Hilltop Hoods',
 			artist_id: 0,
-			album: 'State of the Art',
+      artist: {}, //Artist.Model
 			album_id: 0,
+      album: {}, //Album.Model
       path: '/path/to/song.mp3',
 			time: 219, // Time in seconds. Will be stored as seconds.
-			track: 16,
+			track: 1,
 			votes: 0,
 			voted_for: false,
 			playlist_id: null // this will be the playlist primary key IF the song is in the playlist and now played - used for sorting if votes are tied

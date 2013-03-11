@@ -1,18 +1,18 @@
 define([
   'backbone',
-  'modules/album',
-  'modules/song',
-], function(Backbone, Album, Song) {
+], function(Backbone) {
   var Artist = {};
 
   Artist.Model = Backbone.Model.extend({
     initialize: function() {
+      var Album = requirejs('modules/album');
+      var Song = requirejs('modules/song');
+      this.set('albums', new Album.Collection());
+      this.set('songs', new Song.Collection());
     },
 		defaults: {
       name: "Cars",
       prefix: "The",
-      albums: new Album.Collection(),
-      songs: new Song.Collection()
     }
   });
 

@@ -12,5 +12,9 @@ define([
     }
   });
 
+  Album.Collection = CoreAlbum.Collection.extend({
+    model: Album.Model
+  });
+
   return Album;
 });

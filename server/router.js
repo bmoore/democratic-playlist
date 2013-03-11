@@ -20,7 +20,19 @@ define([
       where: "id = ?",
       params: [req.params.id],
       success: function(m, r, o) {
-        res.send(artist.toJSON());
+        artist.get('songs').fetch({
+          where: "artist_id = ?",
+          params: [artist.get('id')],
+          success: function(m, r, o) {
+            artist.get('albums').fetch({
+              where: "id IN (SELECT album_id FROM song WHERE artist_id = ?)",
+              params: [artist.get('id')],
+              success: function(m, r, o) {
+                res.send(artist.toJSON());
+              }
+            });
+          }
+        });
       }
     });
   });
@@ -32,7 +44,19 @@ define([
       where: "id = ?",
       params: [req.params.id],
       success: function(m, r, o) {
-        res.send(song.toJSON());
+        song.get('artist').fetch({
+          where: "id = ?",
+          params: [song.get('artist_id')],
+          success: function(m, r, o) {
+            song.get('album').fetch({
+              where: "id = ?",
+              params: [song.get('album_id')],
+              success: function(m, r, o) {
+                res.send(song.toJSON());
+              }
+            });
+          }
+        });
       },
     });
   });
@@ -43,7 +67,13 @@ define([
       where: "id = ?",
       params: [req.params.id],
       success: function(m, r, o) {
-        res.send(album.toJSON());
+        album.get('songs').fetch({
+          where: "album_id = ?",
+          params: [album.get('id')],
+          success: function(m, r, o) {
+            res.send(album.toJSON());
+          }
+        });
       },
     })
   });
