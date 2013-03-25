@@ -11,8 +11,8 @@ define([
       this.set('songs', new Song.Collection());
     },
 		defaults: {
-      name: "Cars",
-      prefix: "The",
+      name: "<Unknown>",
+      prefix: "",
     }
   });
 

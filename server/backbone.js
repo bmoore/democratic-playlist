@@ -44,20 +44,7 @@ define(function (exports) {
           if (model.models == undefined) {
             results = results.shift();
           }
-          
-          var success = options.success;
-          options.success = function(resp) {
-            if (success) success(model, resp, options);
-            model.trigger('sync', model, resp, options);
-          };
-
-          var error = options.error;
-          options.error = function(xhr) {
-            if (error) error(model, xhr, options);
-            model.trigger('error', model, xhr, options);
-          };
-
-          if (err) options.error(this);
+          if (results == undefined || err) options.error(this);
           if (results) options.success(results);
         });
       }

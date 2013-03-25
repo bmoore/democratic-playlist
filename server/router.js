@@ -58,6 +58,9 @@ define([
           }
         });
       },
+      error: function(m, r, o) {
+        res.send(404);
+      }
     });
   });
 
@@ -71,7 +74,22 @@ define([
           where: "album_id = ?",
           params: [album.get('id')],
           success: function(m, r, o) {
-            res.send(album.toJSON());
+            var semaphore = 0;
+            var try_send = function() {
+              if (semaphore == album.get('songs').length) {
+                res.send(album.toJSON());
+              }
+            };
+            album.get('songs').each(function(song) {
+              song.get('artist').fetch({
+                where: "id = ?",
+                params: [song.get('artist_id')],
+                success: function(m,r,o) {
+                  semaphore++;
+                  try_send();
+                }
+              });
+            });
           }
         });
       },
@@ -83,8 +101,14 @@ define([
     playlist.get('songs').fetch({
       where: "id IN (select song_id FROM playlist WHERE played IS NULL)",
       success: function(m, r, o) {
-        //Issue: async causes response to be sent early
+        var semaphore = 0;
+        var try_send = function() {
+          if (semaphore == playlist.get('songs').length) {
+            res.send(playlist.toJSON());
+          }
+        };
         playlist.get('songs').each(function(song) {
+
           song.get('artist').fetch({
             where: "id = ?",
             params: [song.get('artist_id')],
@@ -93,9 +117,18 @@ define([
                 where: "id = ?",
                 params: [song.get('album_id')],
                 success: function(m, r, o) {
-                  res.send(playlist.toJSON());
+                  semaphore++;
+                  try_send();
+                },
+                error: function(m,r,o) {
+                  res.send(500);
+                  console.log(m,r,o);
                 }
               });
+            },
+            error: function(m,r,o) {
+              res.send(500);
+              console.log(m,r,o);
             }
           });
         });

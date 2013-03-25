@@ -2,9 +2,26 @@ define([
   'fs',
   'lame',
   'speaker',
-], function(File, Lame, Speaker){
+  'modules/playlist',
+], function(File, Lame, Speaker, Playlist){
   var Player = {
     playing: false,
+
+    initialize: function() {
+      //get playlist
+      this.playlist = new Playlist.Model();
+      this.playlist.fetch();
+
+      //play next song
+      this.play_next_song();
+
+      //set event on speaker.end
+      this.speaker.on("end",function() {
+        Player.play_next_song();
+      });
+    },
+
+    playlist: {},
 
     decoder: {},
 
@@ -37,7 +54,7 @@ define([
         this.stream.destroy();
         this.playing = false;
       }
-    }
+    },
   };
 
   return Player;

@@ -9,10 +9,10 @@ define([
       this.set('songs', new Song.Collection());
     },
 		defaults: {
-      name: 'Departed',
-      prefix: 'The',
-      year: '1998',
-      disk: '1'
+      name: '<Untitled>',
+      prefix: '',
+      year: '1970',
+      disk: ''
     }
   });
 

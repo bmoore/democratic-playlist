@@ -7,7 +7,7 @@ define([
   Sockets.on('connection', function (socket) {
     socket.emit('news', {hello: 'world'});
     socket.on('shout', function(data) {
-      console.log(data);
+      //console.log(data);
     });
   });
 
