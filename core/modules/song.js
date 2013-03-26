@@ -1,13 +1,13 @@
 define([
   'backbone',
-], function(Backbone) {
+  'modules/artist',
+  'modules/album'
+], function(Backbone, Artist, Album) {
   var Song = {};
 
   // Default Model.
   Song.Model = Backbone.Model.extend({
     initialize: function() {
-      var Artist = requirejs('modules/artist');
-      var Album = requirejs('modules/album');
       this.set('artist', new Artist.Model());
       this.set('album', new Album.Model());
     },

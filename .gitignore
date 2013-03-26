@@ -1,6 +1,7 @@
 lib-cov
 music
 node_modules
+client/jam
 *.swp
 *.mp3
 *.seed

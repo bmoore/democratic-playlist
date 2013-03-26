@@ -6,9 +6,10 @@ define([
 
   Playlist.Model = Backbone.Model.extend({
     initialize: function() {
+      this.set('songs', new Song.Collection());
     },
 		defaults: {
-      songs: new Song.Collection(), // can't call 'new' here 
+      songs: {},
     }
   });
 

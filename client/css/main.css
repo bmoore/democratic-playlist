@@ -40,7 +40,7 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #cccccc;
   margin: 1em 0;
   padding: 0; }
 
@@ -149,14 +149,14 @@ a {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.clearfix, #main, #main > section, #main ol.tracks li, #main #library .album-list ol {
+.clearfix, #main, #main > section, #main ol.tracks li, #main #library #albums ol {
   *zoom: 1; }
-  .clearfix:before, #main:before, #main > section:before, #main ol.tracks li:before, #main #library .album-list ol:before, .clearfix:after, #main:after, #main > section:after, #main ol.tracks li:after, #main #library .album-list ol:after {
+  .clearfix:before, #main:before, #main > section:before, #main ol.tracks li:before, #main #library #albums ol:before, .clearfix:after, #main:after, #main > section:after, #main ol.tracks li:after, #main #library #albums ol:after {
     content: " ";
     /* 1 */
     display: table;
     /* 2 */ }
-  .clearfix:after, #main:after, #main > section:after, #main ol.tracks li:after, #main #library .album-list ol:after {
+  .clearfix:after, #main:after, #main > section:after, #main ol.tracks li:after, #main #library #albums ol:after {
     clear: both; }
 
 html,
@@ -180,7 +180,7 @@ body {
         position: relative;
         height: 1.5em;
         width: 10em;
-        padding: .5em 1%;
+        padding: 0.5em 1%;
         display: block;
         float: left;
         white-space: nowrap;
@@ -209,7 +209,7 @@ body {
     #main #playlist ol.tracks li:first-child .progress {
       display: block; }
     #main #playlist ol.tracks li:first-child span {
-      padding: .75em 1%; }
+      padding: 0.75em 1%; }
       #main #playlist ol.tracks li:first-child span.actions {
         display: none; }
   #main #playlist ol.tracks li .progress {
@@ -230,26 +230,26 @@ body {
     width: 5%; }
   #main #playlist ol.tracks li span.actions {
     width: 10%; }
-  #main #library .album-list ol {
+  #main #library #albums ol {
     list-style-type: none;
     margin: 0;
     padding: 0; }
-    #main #library .album-list ol li {
+    #main #library #albums ol li {
       float: left;
       display: block;
       margin: 1em 1%; }
-      #main #library .album-list ol li a {
+      #main #library #albums ol li a {
         padding: 8px;
         text-decoration: none;
         display: block;
         width: 150px;
         border-radius: 4px;
         border: 2px solid transparent; }
-        #main #library .album-list ol li a:hover, #main #library .album-list ol li a:focus {
+        #main #library #albums ol li a:hover, #main #library #albums ol li a:focus {
           border-color: rgba(0, 0, 0, 0.5);
           background: rgba(0, 0, 0, 0.1); }
-      #main #library .album-list ol li img,
-      #main #library .album-list ol li span {
+      #main #library #albums ol li img,
+      #main #library #albums ol li span {
         display: block;
         text-align: center; }
   @media screen and (min-width: 800px) {
@@ -258,12 +258,12 @@ body {
       height: 100%; }
     #main #playlist {
       width: 50%;
-      border-right: 1px solid #111;
+      border-right: 1px solid #111111;
       margin-right: -1px; }
     #main #library {
       width: 50%;
       margin-right: -1px;
-      border-left: 1px solid #111; } }
+      border-left: 1px solid #111111; } }
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
@@ -281,7 +281,7 @@ body {
 @media print {
   * {
     background: transparent !important;
-    color: #000 !important;
+    color: black !important;
     /* Black prints faster: h5bp.com/s */
     box-shadow: none !important;
     text-shadow: none !important; }
@@ -307,7 +307,7 @@ body {
 
   pre,
   blockquote {
-    border: 1px solid #999;
+    border: 1px solid #999999;
     page-break-inside: avoid; }
 
   thead {

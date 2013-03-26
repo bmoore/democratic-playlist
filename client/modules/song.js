@@ -1,54 +1,45 @@
 define([
   'backbone',
-	'core/modules/song',
-	'text!templates/song.model.html'
-], function(Backbone, CoreSong, html) {
+  'core/modules/song',
+  'modules/views/song',
+  'modules/artist',
+  'modules/album',
+], function(Backbone, CoreSong, SongViews, Artist, Album) {
 
-	// Extend Parent
+  // Extend Parent
   var Song = {};
-	_.extend(Song, CoreSong);
+  _.extend(Song, CoreSong);
 
   // Default Model
   Song.Model = CoreSong.Model.extend({
+
     initialize: function(args) {
-			CoreSong.Model.prototype.initialize.call(this, args);
-			console.log('init client song model');
+      CoreSong.Model.prototype.initialize.call(this, args);
+      if (args) {
+        if (args.artist) {
+          this.set('artist', new Artist.Model(args.artist));
+        }
+
+        if (args.album) {
+          this.set('album', new Album.Model(args.album));
+        }
+      }
     },
-		defaults: _.extend({
-		}, CoreSong.Model.prototype.defaults)
+
+    defaults: _.extend({
+    }, CoreSong.Model.prototype.defaults),
+
+    parse: function(response, options) {
+    },
 
   });
 
   // Default Collection.
-/*  Song.Collection = Backbone.Collection.extend({
-    model: Song.Model,
-  }); */
+  Song.Collection = CoreSong.Collection.extend({
+    model: Song.Model
+  });
 
-	// View for a single Song Model
-	// init with el and song.model
-	Song.View = Backbone.View.extend({
-		initialize: function(){
-			this.model.on('change', this.render, this);
-		},
-		tagName: 'li',
-		template: _.template(html),
-		events: {
-			'click .upvote': 'vote'
-		},
-		render: function(){
-			this.$el.html(this.template(this.model.toJSON()));
-			return this;
-		},
-		vote: function(e){
-			e.preventDefault();
-			if(!this.model.get('votedFor')){
-				this.model.set({
-					votedFor: true,
-					votes: this.model.get('votes') + 1
-				});
-			}
-		}
-	});
+  Song.Views = SongViews;
 
   return Song;
 

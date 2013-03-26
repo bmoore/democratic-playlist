@@ -2,113 +2,79 @@
 <html>
 <head>
 <title>Democratic Playlist</title>
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
-		var socket = io.connect('http://localhost');
-		socket.on('news', function (data) {
-			console.log(data);
-			socket.emit('my other event', { my: 'data' });
-		});
-	</script>
-	<script data-main="/main" src="/require-jquery.js"></script>
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/main.css">
+  <script src="socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://localhost');
+    socket.on('news', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
+  </script>
+  <script data-main="config" src="jam/require.js"></script>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-	<div id="main" role="main">
-		<section id="playlist">
-			<h1>Now Playing</h1>
+  <div id="main" role="main">
+    <section id="playlist">
+      <h1>Now Playing</h1>
 
-			<ol class="tracks">
-				<!-- should this be a table? yuck -->
-			</ol>
+      <ol class="tracks">
+        <!-- should this be a table? yuck -->
+      </ol>
 
-		</section> <!-- /#playlist -->
-		
-		<section id="library">
-			<h1>Library</h1>
+    </section> <!-- /#playlist -->
+    
+    <section id="library">
+      <h1>Library</h1>
 
-			<!-- TODO:
-				- toggle list-by (artist/album)
-				- search drawer?
-				- folded list (expand rows to see all songs/albums)
-			-->
+      <!-- TODO:
+        - toggle list-by (artist/album)
+        - search drawer?
+        - folded list (expand rows to see all songs/albums)
+      -->
 
-			<!-- album list sorted by artist -->
-			<div class="album-list">
-				<ol>
-					<li><a href="#album/1">
-							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-							<span class="album">Noir</span>
-							<span class="artist">Blue Sky Black Death</span>
-					</a></li>
-					<li><a href="#album/2">
-							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-							<span class="album">Le Noise</span>
-							<span class="artist">Neil Young</span>
-					</a></li>
-					<li><a href="#album/3">
-							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-							<span class="album">Reign of Terror</span>
-							<span class="artist">Sleigh Bells</span>
-					</a></li>
-					<li><a href="#album/4">
-							<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-							<span class="album">Rise Ye Sunken Ships</span>
-							<span class="artist">We Are Augustines</span>
-					</a></li>
-				</ol>
-			</div>
+      <!-- album list sorted by artist -->
+      <div id="albums">
+        <ol class="list">
+        </ol>
+      </div>
 
-			<div class="album-detail">
-			
-				<div class="jacket">
-					<h2>Noir</h2>
-					<div class="artist">Blue Sky Black Death</div>
-					<div class="year">2011</div>
-					<img class="cover" src="http://placekitten.com/150/150" width="150" height="150">
-				</div>
-				<ol class="tracks">
-					<li>
-						<span class="track-number">1</span>
-						<span class="title">Our Hearts of Ruin</span>
-						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
-						<span class="actions"><a href="#" class="voted">Upvoted</a></span>
-					</li>
-					<li>
-						<span class="track-number">2</span>
-						<span class="title">Sleeping Children Are Still Flying</span>
-						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
-						<span class="actions"><a href="#" class="upvote">Upvote</a></span>
-					</li>
-					<li>
-						<span class="track-number">3</span>
-						<span class="title">And Stars, Ringed</span>
-						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
-						<span class="actions"><a href="#" class="upvote">Upvote</a></span>
-					</li>
-					<li>
-						<span class="track-number">4</span>
-						<span class="title">To The Ends Of The Earth</span>
-						<span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
-						<span class="actions"><a href="#" class="upvote">Upvote</a></span>
-					</li>
+      <div id="album-detail">
+        <div class="jacket">
+        </div>
+        <ol class="tracks">
+          <li>
+            <span class="track-number">1</span>
+            <span class="title">Our Hearts of Ruin</span>
+            <span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+            <span class="actions"><a href="#" class="voted">Upvoted</a></span>
+          </li>
+          <li>
+            <span class="track-number">2</span>
+            <span class="title">Sleeping Children Are Still Flying</span>
+            <span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+            <span class="actions"><a href="#" class="upvote">Upvote</a></span>
+          </li>
+          <li>
+            <span class="track-number">3</span>
+            <span class="title">And Stars, Ringed</span>
+            <span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+            <span class="actions"><a href="#" class="upvote">Upvote</a></span>
+          </li>
+          <li>
+            <span class="track-number">4</span>
+            <span class="title">To The Ends Of The Earth</span>
+            <span class="artist"><a href="#artist/2">Blue Sky Black Death</a></span>
+            <span class="actions"><a href="#" class="upvote">Upvote</a></span>
+          </li>
 
 
-				</ol>
-				
-			
-			
-			
-			</div>
-		
-		
-		</section> <!-- /#library-->
-
-
-	</div> <!-- end main -->
-
+        </ol>
+      </div>
+    </section> <!-- /#library-->
+  </div> <!-- end main -->
 
 </body>
 </html>

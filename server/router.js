@@ -15,19 +15,23 @@ define([
 
   Router.get('/artist/:id', function(req, res) {
     var artist = new Artist.Model();
+    var songs = new Song.Collection();
+    var albums = new Album.Collection();
 
     artist.fetch({
       where: "id = ?",
       params: [req.params.id],
       success: function(m, r, o) {
-        artist.get('songs').fetch({
+        songs.fetch({
           where: "artist_id = ?",
           params: [artist.get('id')],
           success: function(m, r, o) {
-            artist.get('albums').fetch({
+            artist.set('songs', songs);
+            albums.fetch({
               where: "id IN (SELECT album_id FROM song WHERE artist_id = ?)",
               params: [artist.get('id')],
               success: function(m, r, o) {
+                artist.set('albums', albums);
                 res.send(artist.toJSON());
               }
             });
@@ -64,23 +68,66 @@ define([
     });
   });
 
+  Router.get('/albums', function(req, res) {
+    var albums = new Album.Collection();
+    var songs = new Song.Collection();
+    albums.fetch({
+      success: function(m, r, o) {
+        var album_sem = 0;
+        var try_send = function() {
+          if (album_sem == albums.length) {
+            res.send(albums.toJSON());
+          }
+        };
+        albums.each(function(album) {
+          songs.fetch({
+            where: "album_id = ?",
+            params: [album.get('id')],
+            success: function(m, r, o) {
+              album.set('songs', songs);
+              var song_sem = 0;
+              var song_done = function() {
+                if (song_sem == songs.length) {
+                  album_sem++;
+                  try_send();
+                }
+              };
+              songs.each(function(song) {
+                song.get('artist').fetch({
+                  where: "id = ?",
+                  params: [song.get('artist_id')],
+                  success: function(m,r,o) {
+                    song_sem++;
+                    song_done();
+                  }
+                });
+              });
+            }
+          });
+        });
+      },
+    })
+  });
+
   Router.get('/album/:id', function(req, res) {
     var album = new Album.Model();
+    var songs = new Song.Collection();
     album.fetch({
       where: "id = ?",
       params: [req.params.id],
       success: function(m, r, o) {
-        album.get('songs').fetch({
+        songs.fetch({
           where: "album_id = ?",
           params: [album.get('id')],
           success: function(m, r, o) {
+            album.set('songs', songs);
             var semaphore = 0;
             var try_send = function() {
-              if (semaphore == album.get('songs').length) {
+              if (semaphore == songs.length) {
                 res.send(album.toJSON());
               }
             };
-            album.get('songs').each(function(song) {
+            songs.each(function(song) {
               song.get('artist').fetch({
                 where: "id = ?",
                 params: [song.get('artist_id')],
