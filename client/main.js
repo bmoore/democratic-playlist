@@ -34,10 +34,18 @@ require([
       success: function(m,r,o) {
         var album_view = new Album.Views.ModelDetail({
           model: album,
-          el: '#album-detail',
-          template_type: 'detail'
+          el: '#album-detail .jacket',
         });
         album_view.render();
+
+        var songs = new Song.Collection(album.get('songs'));
+
+        var songs_view = new Song.Views.Collection({
+          collection: songs,
+          el: '#album-detail .tracks',
+        });
+
+        songs_view.render();
       }
     });
   });

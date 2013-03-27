@@ -13,7 +13,6 @@ define([
   Playlist.Model = CorePlaylist.Model.extend({
     initialize: function(args) {
       CorePlaylist.Model.prototype.initialize.call(this, args);
-      console.log('client playlist model init');
     },
     defaults: _.extend({
       title: 'Playlist'

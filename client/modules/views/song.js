@@ -31,6 +31,22 @@ define([
     }
   });
 
+  SongViews.Collection = Backbone.View.extend({
+    initialize: function(){
+    },
+    tagName: 'ol',
+    className: 'tracks',
+    render: function(){
+        console.log('SONGS:',this.collection);
+        console.log(this.$el);
+      this.$el.empty();
+      this.collection.each(function(song){
+        var songView = new SongViews.Model({model:song});
+        this.$el.append(songView.render().el );
+      }, this);
+      return this;
+    },
+  });
   return SongViews;
 
 });

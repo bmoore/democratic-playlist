@@ -8,7 +8,7 @@ define([
     initialize: function(args) {
     },
 
-    tagName: 'li',
+    tagName: 'div',
     className: 'jacket',
     template: _.template(DetailTemplate),
 
