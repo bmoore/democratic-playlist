@@ -31,23 +31,24 @@ define(function (exports) {
       //END TABLE INFO
 
       //don't process data on non-read
-      if (method == 'read') {
-
+      if (options.query) {
+        var query = options.query.toString();
+      } else if (method == 'read') {
         var query = "SELECT * FROM " + table;
 
         if (options.where) {
           query += " WHERE " + options.where;
         }
-
-        var query = Db.query(query, options.params, function(err, results) {
-
-          if (model.models == undefined) {
-            results = results.shift();
-          }
-          if (results == undefined || err) options.error(this);
-          if (results) options.success(results);
-        });
       }
+
+      var query = Db.query(query, options.params, function(err, results) {
+
+        if (model.models == undefined) {
+          results = results.shift();
+        }
+        if (results == undefined || err) options.error(this);
+        if (results) options.success(results);
+      });
 
     } catch (e) {
       console.log(e);

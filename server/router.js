@@ -1,10 +1,11 @@
 define([
   'express',
+  'squel',
   'modules/song',
   'modules/artist',
   'modules/album',
   'modules/playlist',
-], function (Express, Song, Artist, Album, Playlist) {
+], function (Express, Squel, Song, Artist, Album, Playlist) {
   var Router = Express();
   var web_dir = 'client';
   var core_dir = 'core';
@@ -45,7 +46,21 @@ define([
     var song = new Song.Model();
 
     song.fetch({
-      where: "id = ?",
+      query: Squel.select().
+        field("song.id").
+        field("title").
+        field("artist_id").
+        field("album_id").
+        field("time").
+        field("track").
+        field("path").
+        field("COUNT(*) AS votes").
+        field("playlist_id").
+        from("song").
+        left_join("playlist", null, "song.id = playlist.song_id").
+        left_join("vote", null, "playlist.id = vote.playlist_id").
+        where("song.id = ?").
+        group("song.id"),
       params: [req.params.id],
       success: function(m, r, o) {
         song.get('artist').fetch({
