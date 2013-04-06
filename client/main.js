@@ -38,7 +38,11 @@ require([
         });
         album_view.render();
 
-        var songs = new Song.Collection(album.get('songs'));
+        var songs = new Song.Collection(album.get('songs'), {
+          comparator: function(song) {
+            return song.get('track');
+          },
+        });
 
         var songs_view = new Song.Views.Collection({
           collection: songs,

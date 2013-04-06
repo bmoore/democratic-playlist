@@ -24,7 +24,6 @@ define([
       votes: '',
       voted_for: false,
       playlist_id: null // this will be the playlist primary key IF the song is in the playlist and now played - used for sorting if votes are tied
-    
     }
 
   });

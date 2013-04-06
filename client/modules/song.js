@@ -37,9 +37,6 @@ define([
   // Default Collection.
   Song.Collection = CoreSong.Collection.extend({
     model: Song.Model,
-    comparator: function(model) {
-      return model.get('track');
-    }
   });
 
   Song.Views = SongViews;
