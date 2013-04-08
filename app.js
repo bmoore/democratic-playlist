@@ -5,7 +5,8 @@ requirejs.config({
     "server/backbone", "main"
   ],
   paths: {
-    'modules': 'server/modules'
+    'modules': 'server/modules',
+    'controllers': 'server/controllers'
   },
   shim: {
   },

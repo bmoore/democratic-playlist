@@ -46,6 +46,14 @@ define(function (exports) {
         if (model.models == undefined) {
           results = results.shift();
         }
+
+        var error = options.error;
+        options.error = function(resp) {
+          if (error) error(model, resp, options);
+          console.log(model, resp, options);
+          model.trigger('error', model, resp, options);
+        };
+
         if (results == undefined || err) options.error(this);
         if (results) options.success(results);
       });
