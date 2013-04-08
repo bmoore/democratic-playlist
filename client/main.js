@@ -20,7 +20,7 @@ require([
 
     var albums = new Album.Collection([],{
       comparator: function(album) {
-        return album.get('artist')+album.get('name');
+        return album.get('artist').toLowerCase()+album.get('name').toLowerCase();
       }
     });
     albums.fetch({
@@ -33,7 +33,7 @@ require([
       }
     });
 
-    var album = new Album.Model({id: 1});
+    var album = new Album.Model({id: 1340});
     album.fetch({
       success: function(m,r,o) {
         var album_view = new Album.Views.ModelDetail({
