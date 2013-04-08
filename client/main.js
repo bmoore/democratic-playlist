@@ -18,7 +18,11 @@ require([
       }
     });
 
-    var albums = new Album.Collection();
+    var albums = new Album.Collection([],{
+      comparator: function(album) {
+        return album.get('artist')+album.get('name');
+      }
+    });
     albums.fetch({
       success: function(m,r,o) {
         var albums_view = new Album.Views.Collection({

@@ -12,7 +12,7 @@ define([
       year: '1970',
       disk: '',
       songs: [],
-      artist: '',
+      artist: '<Orphaned>',
     }
   });
 

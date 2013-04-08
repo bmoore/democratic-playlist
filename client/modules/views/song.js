@@ -37,8 +37,6 @@ define([
     tagName: 'ol',
     className: 'tracks',
     render: function(){
-        console.log('SONGS:',this.collection);
-        console.log(this.$el);
       this.$el.empty();
       this.collection.each(function(song){
         var songView = new SongViews.Model({model:song});

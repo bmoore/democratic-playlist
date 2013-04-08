@@ -85,41 +85,21 @@ define([
 
   Router.get('/albums', function(req, res) {
     var albums = new Album.Collection();
-    var songs = new Song.Collection();
     albums.fetch({
+      query: Squel.select().
+        field("album.id").
+        field("album.name").
+        field("album.prefix").
+        field("album.year").
+        field("album.disk").
+        field("IF(STDDEV(artist.id)=0, CONCAT_WS(', ', artist.name, artist.prefix), 'Various Artists') AS artist").
+        from("album").
+        left_join("song", null, "album.id = song.album_id").
+        left_join("artist", null, "artist.id = song.artist_id").
+        group("album.id"),
       success: function(m, r, o) {
-        var album_sem = 0;
-        var try_send = function() {
-          if (album_sem == albums.length) {
-            res.send(albums.toJSON());
-          }
-        };
-        albums.each(function(album) {
-          songs.fetch({
-            where: "album_id = ?",
-            params: [album.get('id')],
-            success: function(m, r, o) {
-              album.set('songs', songs);
-              var song_sem = 0;
-              var song_done = function() {
-                if (song_sem == songs.length) {
-                  album_sem++;
-                  try_send();
-                }
-              };
-              songs.each(function(song) {
-                song.get('artist').fetch({
-                  where: "id = ?",
-                  params: [song.get('artist_id')],
-                  success: function(m,r,o) {
-                    song_sem++;
-                    song_done();
-                  }
-                });
-              });
-            }
-          });
-        });
+        console.log(o);
+        res.send(albums.toJSON());
       },
     })
   });
