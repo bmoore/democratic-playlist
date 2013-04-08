@@ -3,7 +3,7 @@ define([
 ], function(Mysql) {
 
   var Db = Mysql.createConnection({
-    host: 'localhost',
+    host: 'music.dodgekeg.org',
     user: 'democrat',
     password: 'democrat',
     database: 'democratic_playlist'
