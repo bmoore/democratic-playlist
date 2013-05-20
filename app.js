@@ -2,7 +2,7 @@ var requirejs = require('requirejs');
 
 requirejs.config({
   deps: [
-    "server/backbone", "main"
+    "main"
   ],
   paths: {
     'modules': 'server/modules',
