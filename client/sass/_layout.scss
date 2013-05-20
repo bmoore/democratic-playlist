@@ -122,6 +122,8 @@ body{
 
 	#library{
 		#albums{
+            overflow:auto;
+            height:400px;
 			ol{
 				list-style-type: none;
 				margin: 0;

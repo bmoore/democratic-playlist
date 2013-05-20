@@ -44,7 +44,12 @@ define(function (exports) {
       var query = Db.query(query, options.params, function(err, results) {
 
         if (model.models == undefined) {
-          results = results.shift();
+          if (results != undefined) {
+            results = results.shift();
+          }
+          if (results == undefined) {
+            results = {};
+          }
         }
 
         var error = options.error;
@@ -54,7 +59,8 @@ define(function (exports) {
           model.trigger('error', model, resp, options);
         };
 
-        if (results == undefined || err) options.error(this);
+        this.err = err;
+        if (err) options.error(this);
         if (results) options.success(results);
       });
 

@@ -9,7 +9,7 @@ define([
   // init with el and song.model
   SongViews.Model = Backbone.View.extend({
     initialize: function(){
-      this.model.on('change', this.render, this);
+      this.listenTo(this.model, 'change', this.render);
     },
     tagName: 'li',
     template: _.template(ModelHtml),
@@ -22,10 +22,18 @@ define([
     },
     vote: function(e){
       e.preventDefault();
-      if(!this.model.get('votedFor')){
+      if(!this.model.get('voted_for')){
         this.model.set({
-          votedFor: true,
+          voted_for: true,
           votes: this.model.get('votes') + 1
+        });
+        this.model.save({
+          success: function(m,r,o) {
+            console.log("SUCCESS:", m,r,o);
+          },
+          error: function(m,r,o) {
+            console.log("ERROR:", m,r,o);
+          }
         });
       }
     }

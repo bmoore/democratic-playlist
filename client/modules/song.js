@@ -29,6 +29,8 @@ define([
     defaults: _.extend({
     }, CoreSong.Model.prototype.defaults),
 
+    urlRoot: '/song',
+
     parse: function(response, options) {
     },
 
