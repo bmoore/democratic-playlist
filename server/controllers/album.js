@@ -1,8 +1,6 @@
 define([
-  'squel',
   'modules/album',
-  'modules/song'
-], function (Squel, Album, Song) {
+], function (Album) {
 
   var AlbumController = {};
 
