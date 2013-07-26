@@ -4,7 +4,7 @@ define([
 
   var PlaylistController = {};
 
-  PlaylistController.playlist = function(req, res) {
+  PlaylistController.get = function(req, res) {
     Playlist.get_playlist({
       success: function(results) {
         res.send(results);

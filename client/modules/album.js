@@ -1,19 +1,24 @@
 define([
-  'core/modules/album',
+  'backbone',
   'modules/views/album'
-], function(CoreAlbum, AlbumViews) {
+], function(Backbone, AlbumViews) {
   var Album = {};
-  _.extend(Album, CoreAlbum);
 
-  Album.Model = CoreAlbum.Model.extend({
-    initialize: function(args) {
-      CoreAlbum.Model.prototype.initialize.call(this, args);
+  Album.Model = Backbone.Model.extend({
+    initialize: function() {
     },
-
+		defaults: {
+      name: '<Untitled>',
+      prefix: '',
+      year: '1970',
+      disk: '',
+      songs: [],
+      artist: '<Orphaned>',
+    },
     urlRoot: '/album',
   });
 
-  Album.Collection = CoreAlbum.Collection.extend({
+  Album.Collection = Backbone.Collection.extend({
     model: Album.Model,
     url: 'albums'
   });

@@ -4,8 +4,9 @@ define([
   'controllers/album',
   'controllers/artist',
   'controllers/playlist',
-  'controllers/song'
-], function (Express, Squel, AlbumController, ArtistController, PlaylistController, SongController) {
+  'controllers/song',
+  'controllers/vote'
+], function (Express, Squel, AlbumController, ArtistController, PlaylistController, SongController, VoteController) {
   var Router = Express();
   var web_dir = 'client';
   var core_dir = 'core';
@@ -23,10 +24,13 @@ define([
   Router.get('/song/:id', SongController.get);
   Router.put('/song/:id', SongController.put);
 
-  Router.get('/albums', AlbumController.albums);
-  Router.get('/album/:id', AlbumController.album);
+  Router.get('/vote/:id', VoteController.get);
+  Router.post('/vote', VoteController.post);
 
-  Router.get('/playlist', PlaylistController.playlist);
+  Router.get('/albums', AlbumController.list);
+  Router.get('/album/:id', AlbumController.get);
+
+  Router.get('/playlist', PlaylistController.get);
 
   Router.use('/', Express.static(web_dir));
   Router.use('/core/', Express.static(core_dir));

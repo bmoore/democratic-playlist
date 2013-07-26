@@ -2,7 +2,9 @@ define([
   'server/tools/db',
   'squel'
 ], function(Db, Squel) {
+
   var Artist = {
+
     get_artist: function(options) {
       var query = Squel.select().
         from("artist").
@@ -27,6 +29,7 @@ define([
 
       Db.run({sql: query, nestTables: true}, options);
     }
+
   };
 
   return Artist;

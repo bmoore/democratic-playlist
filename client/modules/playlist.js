@@ -1,28 +1,25 @@
 define([
   'backbone',
-  'core/modules/playlist',
   'modules/views/playlist',
   'modules/song'
-], function(Backbone, CorePlaylist, PlaylistViews, Song) {
+], function(Backbone, PlaylistViews, Song) {
   
   // Extend Parent
   var Playlist = {};
-  _.extend(Playlist, CorePlaylist); // essentially cloning
 
-  // Model
-  Playlist.Model = CorePlaylist.Model.extend({
-    initialize: function(args) {
-      CorePlaylist.Model.prototype.initialize.call(this, args);
+  Playlist.Model = Backbone.Model.extend({
+    initialize: function() {
+      this.set('songs', new Song.Collection());
     },
-    defaults: _.extend({
+		defaults: {
+      songs: {},
       title: 'Playlist'
-    }, CorePlaylist.Model.prototype.defaults),
+    },
     url: 'playlist',
     parse: function (response, options) {
       this.set('songs', new Song.Collection(response.songs));
     }
   });
-
 
   // attach to #playlist,
   // pass a Playlist.Model

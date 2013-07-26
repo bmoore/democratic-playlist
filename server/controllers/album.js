@@ -4,7 +4,7 @@ define([
 
   var AlbumController = {};
 
-  AlbumController.albums = function(req, res) {
+  AlbumController.list = function(req, res) {
     Album.get_albums({
       success: function(results) {
         res.send(results);
@@ -16,7 +16,7 @@ define([
     });
   };
 
-  AlbumController.album = function(req, res) {
+  AlbumController.get = function(req, res) {
     Album.get_album({
       values: [
         req.params.id

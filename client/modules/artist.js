@@ -1,12 +1,15 @@
 define([
-  'core/modules/artist'
-], function(CoreArtist) {
+  'backbone'
+], function(Backbone) {
   var Artist = {};
-  _.extend(Artist, CoreArtist);
 
-  Artist.Model = CoreArtist.Model.extend({
+  Artist.Model = Backbone.Model.extend({
     initialize: function(args) {
-      CoreArtist.Model.prototype.initialize.call(this, args);
+    },
+
+		defaults: {
+      name: "<Unknown>",
+      prefix: "",
     }
   });
 
